@@ -10,7 +10,7 @@
 #   https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
 window:
-  decorations: full
+  decorations: none
   startup_mode: Windowed
   title: Alacritty
 
@@ -100,6 +100,11 @@ key_bindings:
   - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
 
 live_config_rel: true
+
+cursor:
+  style: Beam
+  unfocused_hollow: true
+  live_config_reload: true
 
 shell:
     program: /bin/bash
