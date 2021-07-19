@@ -34,13 +34,8 @@ fi
 
 # this changes the size of the screen
 
-# actual monitor size is 2560x1080, so close but no cigar
+# actual monitor size is 2560x1080
 xrandr --output Virtual-1 --mode 1680x1050 --rate 60
 
-# this launches some window manager for whatever reason
-
-twm &
-xclock -geometry 50x50-1+1 &
-xterm -geometry 80x50+494+51 &
-xterm -geometry 80x20+494-0 &
-exec xterm -geometry 80x66+0+0 -name login
+# this line launches our window manager, awesome
+exec awesome
