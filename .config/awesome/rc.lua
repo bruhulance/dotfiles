@@ -47,6 +47,9 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
+-- Various Programs
+browser = "chromium" -- this is the default browser set, can change at any time
+
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "vim"
@@ -61,22 +64,12 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    -- awful.layout.suit.floating,
+    awful.layout.suit.spiral,
     awful.layout.suit.tile,
+    -- these are the layouts that I don't use, but don't mind keeping around
     -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -90,8 +83,15 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
+myapplications = {
+   { "Chromium", "chromium" },
+   { "Visual Studio Code", "code" }
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+				    { "applications", myapplications },
+                                    { "open terminal", terminal },
+				    { "open browser", browser }
                                   }
                         })
 
@@ -499,19 +499,19 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
-        -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
+       -- Prevent clients from being unreachable after screen count changes.
+       awful.placement.no_offscreen(c)
     end
 end)
 -- }}}
 
 -- Gaps between windows
-beautiful.useless_gap = 5
+beautiful.useless_gap = 4 
 
 -- Autostart Programs
 awful.spawn.with_shell("picom")
