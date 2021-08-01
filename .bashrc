@@ -17,6 +17,7 @@ alias ll='ls -l --color=auto'
 alias la='ls -la --color=auto'
 alias w='nitrogen --set-zoom-fill --random /usr/share/backgrounds'
 alias dfs='git --git-dir=${dotfilesFolder} --work-tree=$HOME' # this is an alias to manage the dotfiles repo
+alias fixscreen='source .xinitrc'
 
 # customizing the terminal text
 # PS1='[\u@\h \W]\$ '
