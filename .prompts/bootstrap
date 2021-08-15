@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# this is a bootstrapper meant to manage and load individual scripts which
+# create a shell prompt
+
+##########################
+# Verifying Correct Load #
+##########################
+
+if [[ $# -lt 1 ]]; then
+	echo "No shell prompt specified, aborting"
+	exit 1
+fi
+if [[ $# -gt 1 ]]; then
+	echo "Too many arguments, aborting"
+	exit 1
+fi
+
+#####################
+# Setting Variables #
+#####################
+
+###########################
+# Loading a Prompt Script #
+###########################
+
+if [[ -f $1 ]]; then
+	source $1
+	exit 0
+else
+	echo "Invalid prompt file passed, aborting"
+	exit 1
+fi
