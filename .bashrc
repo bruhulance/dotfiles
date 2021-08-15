@@ -40,10 +40,10 @@ then
 fi
 
 # Using my own prompt loader to load prompts
-loadPrompt='$HOME/.prompts/bootstrap'
-if [[ -f loadPrompt ]]; then
+loadPrompt="$HOME/.prompts/bootstrap"
+if [[ -f ${loadPrompt} ]]; then
 	# Loading the inputted prompt
-	loadPrompt lambda
+	PS1=$(${loadPrompt} lambda)
 else
 	# Default copy
 	PS1='[\u@\h \W]\$ '
