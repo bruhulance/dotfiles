@@ -20,14 +20,18 @@ fi
 # Setting Variables #
 #####################
 
+__path="${BASH_SOURCE%/*}/"
+__file="${__path}$1"
+
 ###########################
 # Loading a Prompt Script #
 ###########################
 
-if [[ -f $1 ]]; then
-	source $1
+if [[ -f ${__file} ]]; then
+	source ${__file}
 	exit 0
 else
+	echo ${__file}
 	echo "Invalid prompt file passed, aborting"
 	exit 1
 fi
