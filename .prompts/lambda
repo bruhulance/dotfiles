@@ -48,4 +48,7 @@ compile_prompt () {
   PS1+="${c_gray}[${c_cyan}${LETTERS["$[RANDOM % ${#LETTERS[@]}]"]}${c_gray}] \[\e[0m\]"
 }
 
-PROMPT_COMMAND='compile_prompt'
+# Need to execute the function to build PS1 then we echo it out to stdout
+# which gets received by the .bashrc and put into PS1 there. Why.
+compile_prompt
+echo $PS1
