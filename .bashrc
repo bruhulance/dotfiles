@@ -16,7 +16,7 @@ backgroundsFolder='/usr/share/backgrounds/' # this directory contains all of the
 #####################
 
 # basic root aliases
-alias ls='ls --color=auto'
+alias ls='ls -l --color=auto'
 alias ll='ls -alh --color=auto'
 alias la='ls -Al --color=auto'
 alias l='ls -CFlh --color=auto'
