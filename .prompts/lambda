@@ -13,39 +13,47 @@
 
 # This creates the full PS1 prompt
 compile_prompt () {
-  local CONNECTBAR_DOWN=$'\u250C\u2500\u257C'
-  local CONNECTBAR_UP=$'\u2514\u2500\u257C'
-  local SPLITBAR=$'\u257E\u2500\u257C'
+  local CONNECTBAR_DOWN='┌─'
+  local CONNECTBAR_UP='└─'
+  local SPLITBAR=' - '
   local LETTERS=($'\u0393' $'\u03b3' $'\u03b4' $'\u03bb' $'\u03bc' $'\u03be' $'\u03c0' $'\u03a3' $'\u03c6' $'\u03c8' $'\u03a9')
   local c_gray='\e[01;30m'
-  local c_blue='\e[0;34m'
-  local c_cyan='\e[0;36m'
-  local c_green='\e[0;32m'
-  local c_red='\e[0;31m'
-  local c_yellow='\e[0;33m'
+  local c_blue='\e[01;36m'
+  local c_cyan='\e[0;34m'
+  local c_red='\e[01;31m'
+  local c_yellow='\e[01;33m'
   local c_reset='\e[0m'
 
   # > Connectbar Down
   # Format:
   #   (newline)(bright colors)(connectbar down)
-  PS1="${c_gray}$CONNECTBAR_DOWN"
+  PS1="\[${c_cyan}\]$CONNECTBAR_DOWN"
 
   # > Username & Machine Name
   # Format:
   #   (bracket open)(username:hostname)(bracket close)(splitbar)
-  PS1+="[${c_red}\u${c_yellow}:${c_green}\H${c_gray}]"
+  PS1+="[\[${c_blue}\]\u\[${c_cyan}\]@\[${c_yellow}\]\H\[${c_cyan}\]]"
   PS1+="$SPLITBAR"
 
   # > Working Directory
   # Format:
   #   (bracket open)(working directory)(bracket close)(newline)(connectbar up)
-  PS1+="[${c_blue}\w${c_gray}]\n$CONNECTBAR_UP"
+  PS1+="[\[${c_blue}\]\w\[${c_cyan}\]]"
+  PS1+="$SPLITBAR"
+
+  # > Time Stamp
+  # Format:
+  #   (bracket open)(timestamp)(bracket close)
+  PS1+="[\[${c_blue}\]\@\[${c_cyan}\]]"
+
+  # > Connectbar Up
+  PS1+="\n\[${c_cyan}\]$CONNECTBAR_UP"
 
   # > Choosing a random greek letter
   # NOTE: Color must be escaped with '\[\]' to fix the text overflow bug!
   # Format:
-  #   (letter)(color reset)
-  PS1+="${c_gray}[${c_cyan}${LETTERS["$[RANDOM % ${#LETTERS[@]}]"]}${c_gray}] \[\e[0m\]"
+  #   (color reset)(bracket open)(letter)(bracket close)(color reset)
+  PS1+="\[${c_reset}\]\[${c_cyan}\]${LETTERS["$[RANDOM % ${#LETTERS[@]}]"]}\[${c_cyan}\] \[\e[0m\]"
 }
 
 # Need to execute the function to build PS1 then we echo it out to stdout
