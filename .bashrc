@@ -7,9 +7,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Setting bash configs
+HISTSIZE=-1 # unlimited history size
+HISTFILESIZE=-1 # unlimited history file size
+shopt -s histappend
+
 # putting directories within vars
 dotfilesFolder=$HOME/.dotfiles # this is the bare git repo which tracks all of the dot files on my system
-backgroundsFolder='/usr/share/backgrounds/' # this directory contains all of the background images
+backgroundsFolder=/usr/share/backgrounds/ # this directory contains all of the background images
 
 #####################
 # Aliasing Commands #
@@ -27,6 +32,16 @@ alias c='clear'
 alias dfs='git --git-dir=${dotfilesFolder} --work-tree=$HOME' # this is an alias to manage the dotfiles repo
 alias fs='source $HOME/.xinitrc'
 alias src='source $HOME/.bashrc'
+alias home='cd $HOME'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias edit='$EDITOR'
+alias browser='$BROWSER'
+
+# functions which can't be aliases
+h() {
+	wc -l $HOME/.bash_history | awk '{print $1}' | xargs echo 'history size:'
+}
 
 ###################
 # Loading Scripts #
