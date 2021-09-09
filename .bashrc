@@ -21,10 +21,10 @@ backgroundsFolder=/usr/share/backgrounds/ # this directory contains all of the b
 #####################
 
 # basic root aliases
-alias ls='ls -l --color=auto'
-alias ll='ls -alh --color=auto'
-alias la='ls -Al --color=auto'
-alias l='ls -CFlh --color=auto'
+alias ls='ls --color=auto --time-style=long-iso'
+alias ll='ls -lhG --group-directories-first'
+alias la='ll -Aa'
+alias l='ls -CFlh'
 
 # short-hands
 alias w='nitrogen --set-zoom-fill --random ${backgroundsFolder}'
