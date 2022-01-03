@@ -21,10 +21,11 @@ backgroundsFolder=/usr/share/backgrounds/ # this directory contains all of the b
 #####################
 
 # basic root aliases
-alias ls='ls --color=auto --time-style=long-iso'
-alias ll='ls -lhG --group-directories-first'
-alias la='ll -Aa'
+alias ls='ls --color=auto --time-style=long-iso --group-directories-first'
 alias l='ls -CFlh'
+alias ll='ls -lhG'
+alias la='ll -aA'
+alias l.='ll -d .*'
 
 # short-hands
 alias w='nitrogen --set-zoom-fill --random ${backgroundsFolder}'
@@ -35,6 +36,7 @@ alias src='source $HOME/.bashrc'
 alias home='cd $HOME'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias edit='$EDITOR'
 alias browser='$BROWSER'
 
